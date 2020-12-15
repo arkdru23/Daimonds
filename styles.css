@@ -1,7 +1,15 @@
+:root {
+  --scale-value: 1;
+}
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+*:focus {
+  outline: none;
 }
 
 body {
@@ -25,7 +33,7 @@ body {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%) scale(1);
+  transform: translate(-50%, -50%) scale(var(--scale-value));
   transform-origin: center;
   width: 640px;
   height: 480px;
@@ -51,11 +59,13 @@ body {
 }
 
 .start-screen__button {
+  z-index: 1;
   display: flex;
   flex-grow: 0;
   margin-top: 10px;
   padding: 0;
   border: 0;
+
   background-image: url("./images/button-start.png");
   width: 124px;
   max-width: 363px;
@@ -66,6 +76,14 @@ body {
   background-repeat: no-repeat;
 }
 
+.start-screen__button:hover {
+  background-image: url("./images/button-start-hover.png");
+}
+
 .start-screen__button--is-settings {
   background-image: url("./images/button-settings.png");
+}
+
+.start-screen__button--is-settings:hover {
+  background-image: url("./images/button-settings-hover.png");
 }
