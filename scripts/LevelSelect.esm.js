@@ -1,6 +1,8 @@
 import { Common, HIDDEN_SCREEN, VISIBLE_SCREEN } from "./Common.esm.js";
 import { canvas } from "./Canvas.esm.js";
 import { DATALOADED_EVENT_NAME, loader } from "./Loader.esm.js";
+import { game } from "./Game.esm.js";
+import { media } from "./Media.esm.js";
 
 const gameLevels = [
   {
@@ -44,10 +46,9 @@ class LevelSelect extends Common {
   }
 
   loadLevel(level) {
-    const background = loader.loadImage("images/levelbackground.png");
-    window.addEventListener(DATALOADED_EVENT_NAME, () =>
-      console.log("Załadowane wszystkie media")
-    );
+    media.backgroundImage = loader.loadImage("images/levelbackground.png");
+    window.addEventListener(DATALOADED_EVENT_NAME, () => game.playLevel(level));
+    game.animate();
   }
 }
 
