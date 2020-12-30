@@ -1,11 +1,10 @@
 import { Common } from "./Common.esm.js";
-import { game } from "./Game.esm.js";
 import { media } from "./Media.esm.js";
+
+const GAME_SCREEN_ID = "js-game-screen";
 
 export const CANVAS_WIDTH = 640;
 export const CANVAS_HEIGHT = 480;
-
-const GAME_SCREEN_ID = "js-game-screen";
 
 class Canvas extends Common {
   constructor() {
@@ -28,6 +27,10 @@ class Canvas extends Common {
     this.drawLeftMovement(gameState.getLeftMovement());
   }
 
+  drawBackGround() {
+    this.context.drawImage(media.backgroundImage, 0, 0);
+  }
+
   drawPointsToWin(pointsToWin) {
     this.context.fillText(`${pointsToWin}`, 520, 92);
   }
@@ -37,10 +40,6 @@ class Canvas extends Common {
   }
   drawLeftMovement(leftMovement) {
     this.context.fillText(`${leftMovement}`, 520, 234);
-  }
-
-  drawBackGround() {
-    this.context.drawImage(media.backgroundImage, 0, 0);
   }
 }
 

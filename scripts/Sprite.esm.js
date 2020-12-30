@@ -12,12 +12,12 @@ export class Sprite {
   ) {
     this.alpha = 255;
     this.height = height;
+    this.numberOfSprites = numberOfSprites;
+    this.offset = { ...offset };
+    this.spritesImage = spritesImage;
     this.width = width;
     this.x = x;
     this.y = y;
-    this.spritesImage = spritesImage;
-    this.offset = { ...offset };
-    this.numberOfSprites = numberOfSprites;
   }
 
   draw(numberOfSprites = 0, ratio = 1) {
