@@ -1026,7 +1026,4 @@ export const gameLevels = [
       },
     ],
   },
-  {
-    level: 3,
-  },
 ];

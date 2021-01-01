@@ -11,12 +11,6 @@ const gameLevels = [
   {
     level: 2,
   },
-  {
-    level: 3,
-  },
-  {
-    level: 4,
-  },
 ];
 
 const LEVEL_SELECT_ID = "js-level-select-screen";
