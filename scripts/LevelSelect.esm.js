@@ -3,6 +3,7 @@ import { canvas } from "./Canvas.esm.js";
 import { DATALOADED_EVENT_NAME, loader } from "./Loader.esm.js";
 import { game } from "./Game.esm.js";
 import { media } from "./Media.esm.js";
+import { resultScreen } from "./ResultScreen.esm.js";
 
 const gameLevels = [
   {
@@ -36,7 +37,9 @@ class LevelSelect extends Common {
   buttonOnClickHandler(e) {
     this.changeVisibilityScreen(this.element, HIDDEN_SCREEN);
     this.changeVisibilityScreen(canvas.element, VISIBLE_SCREEN);
+
     this.loadLevel(e.currentTarget.value);
+    this.changeVisibilityScreen(resultScreen.element, HIDDEN_SCREEN);
   }
 
   loadLevel(level) {
