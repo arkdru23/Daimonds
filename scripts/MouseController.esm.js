@@ -13,17 +13,16 @@ class MouseController {
     );
   }
 
-  mouseDown(e) {
-    e.preventDefault();
+  mouseDown(event) {
+    event.preventDefault();
 
     const offset = canvas.element.getBoundingClientRect();
     const scale = Number(
       document.documentElement.style.getPropertyValue(SCALE_PROPERTY)
     );
 
-    this.x = (e.clientX - offset.left) / scale;
-    this.y = (e.clientY - offset.top) / scale;
-
+    this.x = (event.clientX - offset.left) / scale;
+    this.y = (event.clientY - offset.top) / scale;
     this.clicked = true;
   }
 }

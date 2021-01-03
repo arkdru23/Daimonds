@@ -12,6 +12,7 @@ import { GameState } from "./GameState.esm.js";
 import { DATALOADED_EVENT_NAME } from "./Loader.esm.js";
 import { media } from "./Media.esm.js";
 import { mouseController } from "./MouseController.esm.js";
+import { resultScreen } from "./ResultScreen.esm.js";
 
 const DIAMONDS_ARRAY_WIDTH = 8;
 const DIAMONDS_ARRAY_HEIGHT = DIAMONDS_ARRAY_WIDTH + 1;
@@ -52,7 +53,7 @@ class Game extends Common {
     this.clearMatched();
     canvas.drawGameOnCanvas(this.gameState);
     this.gameState.getGameBoard().forEach((diamond) => diamond.draw());
-    this.animationFrame = window.requestAnimationFrame(() => this.animate());
+    this.checkEndOfGame();
   }
 
   handleMouseState() {
@@ -271,6 +272,32 @@ class Game extends Common {
         diamond.alpha = 255;
       }
     });
+  }
+
+  checkEndOfGame() {
+    if (
+      !this.gameState.getLeftMovement() &&
+      !this.gameState.getIsMoving() &&
+      !this.gameState.getIsSwaping()
+    ) {
+      const isPlayerWinnder = this.gameState.isPlayerWinner();
+
+      if (isPlayerWinnder && gameLevels[this.gameState.level]) {
+        console.log("NEXT LEVEL");
+      }
+
+      console.log(
+        "Jezeli ma odpowiednia ilosc punktow to akutalizacja high scores"
+      );
+
+      resultScreen.viewResultScreen(
+        isPlayerWinnder,
+        this.gameState.getPlayerPoints(),
+        this.gameState.level
+      );
+    } else {
+      this.animationFrame = window.requestAnimationFrame(() => this.animate());
+    }
   }
 
   swap(firstDiamond, secondDiamond) {
