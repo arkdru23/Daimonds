@@ -6,7 +6,7 @@ export const GAME_BOARD_Y_OFFSET = 20;
 export const gameLevels = [
   {
     level: 1,
-    numberOfMovements: 1,
+    numberOfMovements: 30,
     pointsToWin: 7000,
     board: [
       {

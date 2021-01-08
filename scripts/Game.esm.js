@@ -13,6 +13,7 @@ import { DATALOADED_EVENT_NAME } from "./Loader.esm.js";
 import { media } from "./Media.esm.js";
 import { mouseController } from "./MouseController.esm.js";
 import { resultScreen } from "./ResultScreen.esm.js";
+import { userData } from "./UserData.esm.js";
 
 const DIAMONDS_ARRAY_WIDTH = 8;
 const DIAMONDS_ARRAY_HEIGHT = DIAMONDS_ARRAY_WIDTH + 1;
@@ -280,10 +281,19 @@ class Game extends Common {
       !this.gameState.getIsMoving() &&
       !this.gameState.getIsSwaping()
     ) {
-      const isPlayerWinnder = this.gameState.isPlayerWinner();
+      const isPlayerWinner = this.gameState.isPlayerWinner();
+      const currentLevel = Number(this.gameState.level);
 
-      if (isPlayerWinnder && gameLevels[this.gameState.level]) {
-        console.log("NEXT LEVEL");
+      if (isPlayerWinner && gameLevels[currentLevel]) {
+        if (!userData.checkAvailibityLevel(currentLevel + 1)) {
+          userData.addNewLevel(currentLevel + 1);
+        }
+      }
+
+      if (
+        userData.getHighScores(currentLevel) < this.gameState.getPlayerPoints()
+      ) {
+        userData.setHighScore(currentLevel, this.gameState.getPlayerPoints());
       }
 
       console.log(
@@ -291,9 +301,9 @@ class Game extends Common {
       );
 
       resultScreen.viewResultScreen(
-        isPlayerWinnder,
+        isPlayerWinner,
         this.gameState.getPlayerPoints(),
-        this.gameState.level
+        currentLevel
       );
     } else {
       this.animationFrame = window.requestAnimationFrame(() => this.animate());
