@@ -10,6 +10,7 @@ import {
 import { GameState } from "./GameState.esm.js";
 
 import { DATALOADED_EVENT_NAME } from "./Loader.esm.js";
+import { mainMenu } from "./MainMenu.esm.js";
 import { media } from "./Media.esm.js";
 import { mouseController } from "./MouseController.esm.js";
 import { resultScreen } from "./ResultScreen.esm.js";
@@ -40,6 +41,10 @@ class Game extends Common {
       media.diamondsSprite
     );
     this.changeVisibilityScreen(canvas.element, VISIBLE_SCREEN);
+    this.changeVisibilityScreen(
+      mainMenu.miniSettingsLayerElement,
+      VISIBLE_SCREEN
+    );
     media.isInLevel = true;
     media.playBackgroundMusic();
 

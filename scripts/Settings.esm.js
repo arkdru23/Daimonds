@@ -1,4 +1,5 @@
-import { Common } from "./Common.esm.js";
+import { Common, HIDDEN_SCREEN } from "./Common.esm.js";
+import { media } from "./Media.esm.js";
 
 export const SETTINGS_SCREEN_ID = "js-settings-screen";
 const MUSIC_ON_OFF_BUTTON_ID = "js-music-on-off";
@@ -12,6 +13,7 @@ const SETTINGS_EXIT_BUTTON_ID = "js-settings-screen-exit-button";
 class Settings extends Common {
   constructor() {
     super(SETTINGS_SCREEN_ID);
+    this.bindToElements();
   }
   bindToElements() {
     const exitSettingsElement = this.bindToElement(SETTINGS_EXIT_BUTTON_ID);

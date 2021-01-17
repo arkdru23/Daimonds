@@ -3,6 +3,8 @@ import { levelSelect } from "./LevelSelect.esm.js";
 import { CANVAS_WIDTH, CANVAS_HEIGHT } from "./Canvas.esm.js";
 import { SETTINGS_SCREEN_ID, settings } from "./Settings.esm.js";
 
+const MINI_SETTINGS_BUTTON_ID = "js-mini-settings-button";
+const MINI_SETTINGS_LAYER_ID = "js-mini-settings-layer";
 export const SCALE_PROPERTY = "--scale-value";
 const START_SCREEN_ID = "js-start-screen";
 const START_SCREEN_GAME_BUTTON_ID = "js-start-game";
@@ -21,9 +23,17 @@ class MainMenu extends Common {
     const gameSettingsButton = this.bindToElement(
       START_SCREEN_SETTINGS_BUTTON_ID
     );
+    const miniSettingsButtonElement = this.bindToElement(
+      MINI_SETTINGS_BUTTON_ID
+    );
+
+    this.miniSettingsLayerElement = this.bindToElement(MINI_SETTINGS_LAYER_ID);
 
     gameStartButton.addEventListener("click", () => this.showLevelScreen());
     gameSettingsButton.addEventListener("click", () =>
+      this.showSettingsScreen()
+    );
+    miniSettingsButtonElement.addEventListener("click", () =>
       this.showSettingsScreen()
     );
   }
