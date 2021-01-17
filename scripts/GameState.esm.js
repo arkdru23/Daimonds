@@ -11,7 +11,7 @@ export class GameState {
     );
     let _isSwaping = false;
     let _isMoving = false;
-    this._pointsToWin = 1000;
+    this._pointsToWin = 7000;
     this._level = level;
 
     this.getLeftMovement = () => _leftMovement;
